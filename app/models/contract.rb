@@ -1,5 +1,5 @@
 class Contract < ApplicationRecord
-  has_many :attachments, dependent: :restrict_with_error
+  has_many :attachments, as: :attachable, dependent: :restrict_with_error
 
   validates :name, presence: true
 end

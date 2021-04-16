@@ -1,0 +1,6 @@
+<%= form_with model: attachable.attachments.build do |form| %>
+  <%= form.hidden_field :attachable_type %>
+  <%= form.hidden_field :attachable_id %>
+  <%= form.file_field :upload %>
+  <%= form.submit %>
+<% end %>

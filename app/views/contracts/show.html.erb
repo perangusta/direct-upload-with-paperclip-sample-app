@@ -7,3 +7,8 @@
 
 <%= link_to 'Edit', edit_contract_path(@contract) %> |
 <%= link_to 'Back', contracts_path %>
+
+<hr>
+
+<%= render partial: 'attachments/index_for_attachable', locals: { attachable: @contract } %>
+<%= render partial: 'attachments/form_for_attachable', locals: { attachable: @contract } %>

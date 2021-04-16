@@ -1,0 +1,21 @@
+<h3>Documents</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>File Name</th>
+      <th>File Size</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% attachable.attachments.each do |attachment| %>
+      <tr>
+        <td><%= attachment.upload_file_name %></td>
+        <td><%= number_to_human_size(attachment.upload_file_size) %></td>
+        <td><%= link_to 'Download', attachment.upload.expiring_url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
