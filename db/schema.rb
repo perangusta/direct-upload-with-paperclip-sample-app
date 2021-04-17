@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_102906) do
+ActiveRecord::Schema.define(version: 2021_04_16_232157) do
 
   create_table "attachments", force: :cascade do |t|
     t.string "attachable_type", null: false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_102906) do
     t.string "upload_content_type"
     t.bigint "upload_file_size"
     t.datetime "upload_updated_at"
+    t.string "upload_fingerprint"
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable"
   end
 

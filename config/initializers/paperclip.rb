@@ -18,3 +18,6 @@ Paperclip::Attachment.default_options.update(
 Paperclip.interpolates :tenant_directory  do |attachment, _style|
   attachment.instance.tenant_directory
 end
+
+# required to support "styles" (Post Processing)
+Paperclip::UriAdapter.register

@@ -1,6 +1,8 @@
-<%= form_with model: attachable.attachments.build do |form| %>
+<%= javascript_pack_tag 'direct_file_upload' %>
+
+<%= form_with model: attachable.attachments.build, local: true, html: { data: { direct_file_upload: true } } do |form| %>
   <%= form.hidden_field :attachable_type %>
   <%= form.hidden_field :attachable_id %>
-  <%= form.file_field :upload %>
+  <%= form.file_field :upload, multiple: true %>
   <%= form.submit %>
 <% end %>
