@@ -43,3 +43,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Allow files attachment to records
 gem 'kt-paperclip'
 gem 'aws-sdk-s3'
+gem 'fog-aws'
