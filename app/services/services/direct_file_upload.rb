@@ -22,7 +22,7 @@ module Services
       requires_download = paperclip_attachment.options[:styles].present? || paperclip_attachment.options[:adapter_options][:hash_digest] != Digest::MD5
 
       assign_attributes_to_record(paperclip_attachment, upload_path, requires_download)
-      move_uploaded_file_to_final_path(paperclip_attachment, upload_path, requires_download)
+      copy_uploaded_file_to_final_path(paperclip_attachment, upload_path, requires_download)
       remove_temporary_uploaded_file(upload_path)
     end
 
@@ -40,11 +40,11 @@ module Services
 
         # optional column "fingerprint"
         record.public_send("#{paperclip_attachment.name}_fingerprint=",  headers['ETag'].gsub(/"/, ''))
-      end
 
-      # manually assign a value to the primary key (usually "id")
-      # while assuming that it is required and part of "path"
-      assign_primary_key_nextval(paperclip_attachment)
+        # manually assign a value to the primary key (usually "id")
+        # while assuming that it is required and part of "path"
+        assign_primary_key_nextval(paperclip_attachment)
+      end
     end
 
     def self.assign_primary_key_nextval(paperclip_attachment)
@@ -68,7 +68,7 @@ module Services
       record.public_send("#{primary_key}=", primary_key_sequence.first['nextval'])
     end
 
-    def self.move_uploaded_file_to_final_path(paperclip_attachment, upload_path, requires_download)
+    def self.copy_uploaded_file_to_final_path(paperclip_attachment, upload_path, requires_download)
       return if requires_download
 
       storage_connection.copy_object(bucket, upload_path, bucket, paperclip_attachment.path)
